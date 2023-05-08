@@ -81,7 +81,7 @@ SELECT order_id, o.ship_via, company_name FROM orders AS o INNER JOIN shippers A
 
 --Obtener el número de orden, país de envío (shipCountry) y el nombre del empleado de la tabla ordenes y empleados Queremos que salga el Nombre y Apellido del Empleado en una sola columna.
 
-SELECT o.order_id, ship_country, CONCAT(first_name, ' ', last_name) AS complete_name FROM orders AS o INNER JOIN employees AS e ON o.order_id = e.reports_to;
+SELECT order_id, ship_country, CONCAT(first_name, ' ', last_name) AS complete_name FROM orders AS o INNER JOIN employees AS e ON o.employee_id = e.employee_id;
 
 --Combinando la mayoría de conceptos
 --CONTAR EL NUMERO DE ORDENES POR EMPLEADO OBTENIENDO EL ID EMPLEADO Y EL NOMBRE COMPLETO DE LAS TABLAS DE ORDENES Y DE EMPLEADOS join y group by / columna calculada
@@ -98,4 +98,4 @@ SELECT COUNT(unit_price * quantity) AS sales, customer_id FROM order_details AS 
 
 --OBTENER LAS VENTAS (UNITPRICE * QUANTITY) POR EMPLEADO MOSTRANDO EL APELLIDO (LASTNAME)DE LAS TABLAS EMPLEADOS, ORDENES, DETALLE DE ORDENES
 
-SELECT COUNT(unit_price * quantity) AS sales, last_name FROM order_details AS od INNER JOIN orders AS o ON od.order_id = o.order_id INNER JOIN employees AS e ON o.employee_id = e.reports_to GROUP BY last_name;
+SELECT COUNT(unit_price * quantity) AS sales, last_name FROM order_details AS od INNER JOIN orders AS o ON od.order_id = o.order_id INNER JOIN employees AS e ON o.employee_id = e.employee_id GROUP BY e.employee_id;
