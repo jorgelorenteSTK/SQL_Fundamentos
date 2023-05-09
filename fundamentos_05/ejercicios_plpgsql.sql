@@ -73,7 +73,7 @@ LANGUAGE 'plpgsql';
 DO $$
 DECLARE monto decimal := 1500;
 DECLARE duracion decimal := 2;
-DECLARE interes decimal:= 0.02 / 12;
+DECLARE interes decimal := 0.02 / 12;
 
 BEGIN
 	RAISE NOTICE 'El monto de un préstamo de valor % en una cantidad de % meses con un interés de % es de %',monto, duracion, interes, monto*(interes / (1 - (1 + interes)^(-1 * duracion)));
